@@ -19,6 +19,8 @@ const accentClass = entry.collection === 'skills'
 <a
   href={entry.href}
   data-search-card
+  data-entry-type={entry.collection}
+  data-entry-country={entry.country}
   data-search-text={searchText}
   class={`bento-card group relative overflow-hidden p-5 md:p-6 ${featured ? 'md:col-span-2' : ''}`}
 >

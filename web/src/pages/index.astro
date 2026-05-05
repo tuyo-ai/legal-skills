@@ -3,12 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import SearchBar from '../components/SearchBar.astro';
 import Card from '../components/Card.astro';
 import { getRegistryEntries } from '../lib/registry';
+import { COUNTRIES } from '../lib/countries.mjs';
 
 const entries = getRegistryEntries();
 const skills = entries.filter((entry) => entry.collection === 'skills').length;
 const agents = entries.filter((entry) => entry.collection === 'agents').length;
 const mcps = entries.filter((entry) => entry.collection === 'mcps').length;
-const countries = new Set(entries.map((entry) => entry.country)).size;
+const countriesCount = new Set(entries.map((entry) => entry.country)).size;
 ---
 <Layout title="LEGAL SKILLS | Directory">
   <section class="mb-9 grid gap-4 lg:grid-cols-12">
@@ -48,7 +49,7 @@ const countries = new Set(entries.map((entry) => entry.country)).size;
           <div class="text-sm font-bold text-emerald-950/55">MCPs</div>
         </div>
         <div class="rounded-[1.35rem] bg-white/55 p-4">
-          <div class="text-3xl font-black text-emerald-950">{countries}</div>
+          <div class="text-3xl font-black text-emerald-950">{countriesCount}</div>
           <div class="text-sm font-bold text-emerald-950/55">Countries</div>
         </div>
       </div>
@@ -74,7 +75,7 @@ const countries = new Set(entries.map((entry) => entry.country)).size;
       </p>
     </div>
 
-    <SearchBar />
+    <SearchBar countries={COUNTRIES} />
 
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {entries.map((entry, index) => (
