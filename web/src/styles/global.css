@@ -1,48 +1,172 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-forest: #064e3b;
-  --color-emerald: #10b981;
-  --color-gold: #f59e0b;
-  --color-sand: #fef3c7;
-  --color-glass: rgba(255, 255, 255, 0.15);
+  --forest: #064e3b;
+  --deep-forest: #022c22;
+  --leaf: #10b981;
+  --moss: #84cc16;
+  --sun: #f8c84e;
+  --peach: #fad4c0;
+  --sky: #80a1c1;
+  --surface: #fff8e8;
+  --surface-strong: #fffdf5;
+  --ink: #10231d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-sand);
-  color: var(--color-forest);
-  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
   margin: 0;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(132, 204, 22, 0.24), transparent 28rem),
+    radial-gradient(circle at 84% 12%, rgba(248, 200, 78, 0.28), transparent 26rem),
+    radial-gradient(circle at 54% 92%, rgba(128, 161, 193, 0.22), transparent 28rem),
+    linear-gradient(135deg, #fff8e8 0%, #f4f5d8 48%, #e6f3d4 100%);
 }
 
-.solarpunk-card {
-  background: var(--color-glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
-  transition: transform 0.2s ease;
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(6, 78, 59, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 78, 59, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
 }
 
-.solarpunk-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-gold);
+a {
+  text-decoration: none;
+}
+
+.bento-panel,
+.bento-card {
+  border: 1px solid rgba(6, 78, 59, 0.12);
+  border-radius: 2rem;
+  background: linear-gradient(145deg, rgba(255, 253, 245, 0.78), rgba(255, 248, 232, 0.5));
+  box-shadow: 0 24px 80px rgba(6, 78, 59, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(22px);
+}
+
+.bento-card {
+  min-height: 18rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(16, 185, 129, 0.36);
+  box-shadow: 0 28px 90px rgba(6, 78, 59, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.btn-primary,
+.btn-secondary {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.925rem;
+  font-weight: 900;
+  justify-content: center;
+  line-height: 1;
+  padding: 0.95rem 1.25rem;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .btn-primary {
-  background-color: var(--color-emerald);
+  background: linear-gradient(135deg, #047857, #10b981);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
+  box-shadow: 0 12px 32px rgba(4, 120, 87, 0.24);
 }
 
-.btn-gold {
-  background-color: var(--color-gold);
-  color: var(--color-forest);
-  padding: 0.5rem 1rem;
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(6, 78, 59, 0.12);
+  color: var(--deep-forest);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.prose-content {
+  color: rgba(16, 35, 29, 0.72);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose-content h1,
+.prose-content h2,
+.prose-content h3 {
+  color: var(--deep-forest);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.prose-content h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 1rem;
+}
+
+.prose-content h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  margin: 2rem 0 0.8rem;
+}
+
+.prose-content h3 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.6rem;
+}
+
+.prose-content p {
+  margin: 0.7rem 0;
+}
+
+.prose-content ul,
+.prose-content ol {
+  margin: 0.8rem 0 1.2rem;
+  padding-left: 1.25rem;
+}
+
+.prose-content li {
+  margin: 0.35rem 0;
+}
+
+.prose-content strong {
+  color: var(--deep-forest);
+}
+
+.prose-content code {
   border-radius: 0.5rem;
-  font-weight: bold;
+  background: rgba(6, 78, 59, 0.08);
+  color: var(--deep-forest);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 0.15rem 0.38rem;
+}
+
+.prose-content a {
+  color: #047857;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.hidden {
+  display: none !important;
 }

@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getRegistryEntries, markdownToHtml } from '../../lib/registry';
+
+export function getStaticPaths() {
+  return getRegistryEntries().map((entry) => ({
+    params: { collection: entry.collection, slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+<Layout title={`${entry.title} | LEGAL SKILLS`} description={entry.description}>
+  <div class="mb-6">
+    <a href="/" class="inline-flex items-center gap-2 rounded-full bg-white/55 px-4 py-2 text-sm font-black text-emerald-950/65 transition hover:bg-white hover:text-emerald-800">
+      ← Back to directory
+    </a>
+  </div>
+
+  <section class="grid gap-5 lg:grid-cols-12">
+    <article class="bento-panel overflow-hidden lg:col-span-8">
+      <div class="border-b border-emerald-950/10 bg-white/35 p-6 md:p-8">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="rounded-full bg-emerald-700 px-3 py-1 text-xs font-black uppercase tracking-[0.24em] text-white">{entry.collectionLabel}</span>
+          <span class="rounded-full bg-emerald-950/7 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-emerald-950/60">{entry.country}</span>
+          <span class="rounded-full bg-emerald-950/7 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-emerald-950/60">{entry.language}</span>
+        </div>
+        <h1 class="mt-5 text-4xl font-black tracking-[-0.04em] text-emerald-950 md:text-6xl">{entry.title}</h1>
+        <p class="mt-4 max-w-3xl text-lg leading-8 text-emerald-950/65">{entry.description}</p>
+      </div>
+
+      <div class="p-6 md:p-8">
+        <div class="prose-content" set:html={markdownToHtml(entry.raw)} />
+      </div>
+    </article>
+
+    <aside class="space-y-5 lg:col-span-4">
+      <div class="bento-panel p-6">
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Metadata</p>
+        <dl class="mt-5 space-y-4 text-sm">
+          <div class="flex items-center justify-between gap-4">
+            <dt class="font-bold text-emerald-950/55">Type</dt>
+            <dd class="font-black text-emerald-950">{entry.type}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <dt class="font-bold text-emerald-950/55">Country</dt>
+            <dd class="font-black text-emerald-950">{entry.country}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <dt class="font-bold text-emerald-950/55">Language</dt>
+            <dd class="font-black text-emerald-950">{entry.language}</dd>
+          </div>
+        </dl>
+      </div>
+
+      {entry.capabilities.length > 0 && (
+        <div class="bento-panel p-6">
+          <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Capabilities</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {entry.capabilities.map((capability) => (
+              <span class="rounded-full bg-emerald-900/[0.07] px-3 py-1.5 text-xs font-bold text-emerald-950/70">{capability}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="bento-panel p-6">
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Source</p>
+        <p class="mt-4 text-sm leading-6 text-emerald-950/60">This page is generated from the GitHub repository source file.</p>
+        <a href={entry.githubUrl} target="_blank" rel="noreferrer" class="btn-secondary mt-5 inline-flex">View source on GitHub</a>
+      </div>
+    </aside>
+  </section>
+</Layout>

@@ -1,61 +1,61 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const resources = [
+  {
+    title: 'New to Skills?',
+    eyebrow: 'Everything you need to get started',
+    body: 'A simple onboarding path for legal builders who want reusable AI capabilities without starting from a blank prompt every time.',
+  },
+  {
+    title: 'What are Skills?',
+    eyebrow: 'Learn what agent skills are and how they can supercharge your workflow',
+    body: 'Skills are packaged instructions, workflows, rubrics, and assets that help an AI agent perform a repeatable task with consistent quality.',
+  },
+  {
+    title: 'Skills vs MCP',
+    eyebrow: 'Understand the difference between skills and MCP servers',
+    body: 'Skills teach the agent how to work. MCP servers connect the agent to external tools, databases, search APIs, and live legal sources.',
+  },
+  {
+    title: 'Getting Started',
+    eyebrow: 'Install your first skill in under 2 minutes',
+    body: 'Pick a directory entry, copy the source, add it to your agent runtime, and test it on a narrow legal workflow before expanding scope.',
+  },
+  {
+    title: 'Create a Skill',
+    eyebrow: 'Step-by-step guide to building and sharing your own skills',
+    body: 'Start from a template, define jurisdiction and language metadata, write the workflow, add verification steps, and open a pull request.',
+  },
+];
 ---
 <Layout title="Resources | LEGAL SKILLS">
-  <div class="max-w-4xl mx-auto">
-    <header class="text-center mb-16">
-      <h1 class="text-5xl font-extrabold text-emerald-900 mb-4">Resources 📚</h1>
-      <p class="text-xl text-emerald-800/70">Master the tools of the future.</p>
-    </header>
+  <section class="mb-8 bento-panel relative overflow-hidden p-8 md:p-10">
+    <div class="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-amber-300/30 blur-3xl"></div>
+    <div class="relative z-10 max-w-3xl">
+      <span class="rounded-full bg-emerald-900/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-emerald-950/55">Resources</span>
+      <h1 class="mt-6 text-5xl font-black tracking-[-0.05em] text-emerald-950 md:text-7xl">Build better legal skills.</h1>
+      <p class="mt-5 text-lg leading-8 text-emerald-950/65">Guides for developers, lawyers, and agent builders who want to publish useful, jurisdiction-aware legal AI resources.</p>
+    </div>
+  </section>
 
-    <section class="mb-20">
-      <h2 class="text-3xl font-bold text-emerald-900 mb-6">New to Skills?</h2>
-      <div class="solarpunk-card p-8">
-        <p class="text-lg text-emerald-800/80 leading-relaxed">
-          Everything you need to get started. Welcome to our comprehensive learning hub.
-        </p>
-      </div>
-    </section>
+  <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {resources.map((resource, index) => (
+      <article class={`bento-card p-6 ${index === 0 ? 'md:col-span-2' : ''}`}>
+        <p class="text-xs font-black uppercase tracking-[0.24em] text-emerald-950/45">{resource.eyebrow}</p>
+        <h2 class="mt-4 text-3xl font-black tracking-tight text-emerald-950">{resource.title}</h2>
+        <p class="mt-4 text-sm leading-6 text-emerald-950/62">{resource.body}</p>
+      </article>
+    ))}
+  </section>
 
-    <section class="mb-20">
-      <h2 class="text-3xl font-bold text-emerald-900 mb-6">What are Skills?</h2>
-      <div class="solarpunk-card p-8">
-        <p class="text-lg text-emerald-800/80 leading-relaxed">
-          Learn what agent skills are and how they can supercharge your workflow. 
-          A skill is a modular set of instructions that allows an AI to perform specific legal tasks...
-        </p>
+  <section class="mt-8 bento-panel p-6 md:p-8">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Contribute</p>
+        <h2 class="mt-2 text-3xl font-black text-emerald-950">Ready to list a SKILL.md?</h2>
       </div>
-    </section>
-
-    <section class="mb-20">
-      <h2 class="text-3xl font-bold text-emerald-900 mb-6">Skills vs MCP</h2>
-      <div class="solarpunk-card p-8">
-        <p class="text-lg text-emerald-800/80 leading-relaxed">
-          Understand the difference between skills and MCP servers. 
-          One is about <strong class="text-emerald-700">action</strong>, the other is about <strong class="text-emerald-700">connection</strong>.
-        </p>
-      </div>
-    </section>
-
-    <section class="mb-20">
-      <h2 class="text-3xl font-bold text-emerald-900 mb-6">Getting Started</h2>
-      <div class="solarpunk-card p-8">
-        <p class="text-lg text-emerald-800/80 leading-relaxed">
-          Install your first skill in under 2 minutes. Follow our quick-start guide to get your first agent running.
-        </p>
-      </div>
-    </section>
-
-    <section class="mb-20">
-      <h2 class="text-3xl font-bold text-emerald-900 mb-6">Create a Skill</h2>
-      <div class="solarpunk-card p-8">
-        <p class="text-lg text-emerald-800/80 leading-relaxed">
-          Step-by-step guide to building and sharing your own skills. Join the community and contribute to the registry.
-        </p>
-        <div class="mt-6">
-          <a href="https://github.com/tuyo-ai/legal-skills" target="_blank" class="btn-primary inline-block">View GitHub Repo</a>
-        </div>
-      </div>
-    </section>
-  </div>
+      <a href="https://github.com/tuyo-ai/legal-skills" target="_blank" rel="noreferrer" class="btn-primary">Open GitHub repo</a>
+    </div>
+  </section>
 </Layout>

@@ -1,10 +1,19 @@
 ---
+const listSkillUrl = 'https://github.com/tuyo-ai/legal-skills/compare/main?quick_pull=1&title=List%20a%20new%20LEGAL%20SKILL.md&template=PULL_REQUEST_TEMPLATE.md';
 ---
-<nav class="flex justify-between items-center p-6 bg-emerald-900/20 backdrop-blur-md sticky top-0 z-50">
-  <div class="text-2xl font-bold text-emerald-900">LEGAL SKILLS 🌿</div>
-  <div class="flex items-center gap-6">
-    <a href="/" class="hover:text-emerald-600 transition-colors">Directory</a>
-    <a href="/resources" class="hover:text-emerald-600 transition-colors">Resources</a>
-    <a href="https://github.com/tuyo-ai/legal-skills/compare/main" target="_blank" class="btn-gold shadow-lg">List SKILL.md</a>
+<nav class="sticky top-0 z-50 border-b border-emerald-950/10 bg-[#fff8e8]/80 backdrop-blur-2xl">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8">
+    <a href="/" class="group flex items-center gap-3" aria-label="LEGAL SKILLS home">
+      <span class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-700 text-lg text-white shadow-lg shadow-emerald-900/15">🌿</span>
+      <span class="text-lg font-black tracking-tight text-emerald-950">LEGAL SKILLS</span>
+    </a>
+
+    <div class="flex items-center gap-2 rounded-full border border-emerald-950/10 bg-white/45 p-1 shadow-sm">
+      <a href="/" class="rounded-full px-4 py-2 text-sm font-bold text-emerald-950/70 transition hover:bg-white hover:text-emerald-800">Directory</a>
+      <a href="/resources" class="rounded-full px-4 py-2 text-sm font-bold text-emerald-950/70 transition hover:bg-white hover:text-emerald-800">Resources</a>
+      <a href={listSkillUrl} target="_blank" rel="noreferrer" class="rounded-full bg-amber-300 px-4 py-2 text-sm font-black text-emerald-950 shadow-sm transition hover:bg-amber-200">
+        List SKILL.md
+      </a>
+    </div>
   </div>
 </nav>

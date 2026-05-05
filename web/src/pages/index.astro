@@ -2,48 +2,89 @@
 import Layout from '../layouts/Layout.astro';
 import SearchBar from '../components/SearchBar.astro';
 import Card from '../components/Card.astro';
+import { getRegistryEntries } from '../lib/registry';
 
-// Fetch all markdown files from the data directory
-const allEntries = await import.meta.glob('../../../data/**/*.{md,mdx}');
-
-const entries = Object.keys(allEntries).map((path) => {
-  // Extract metadata from frontmatter
-  // Note: In a real Astro build, we'd use the content() function
-  // But for this scaffold, we'll simulate the data processing
-  // We'll assume the file contents are parsed correctly by Astro
-  return path;
-});
-
-// For the purpose of this demonstration and to avoid build issues in this environment,
-// we will manually construct a list of entries that mimic the data we created.
-// In a real Astro project, you would use:
-// const entries = await Promise.all(Object.values(allEntries).map(m => m()));
-// and then map the frontmatter.
-
-const mockEntries = [
-  { title: 'Contract Analyzer', description: 'Analyzes commercial contracts for high-risk clauses in US jurisdiction.', type: 'Skill', country: 'US', language: 'en', link: '/skills/contract-analyzer' },
-  { title: 'Clara', description: 'Agent specializing in Spanish civil law intake.', type: 'Agent', country: 'ES', language: 'es', link: '/agents/clara' },
-  { title: 'Legal Search MCP', description: 'Provides access to UK legislation and case law.', type: 'MCP', country: 'UK', language: 'en', link: '/mcps/legal-search' }
-];
+const entries = getRegistryEntries();
+const skills = entries.filter((entry) => entry.collection === 'skills').length;
+const agents = entries.filter((entry) => entry.collection === 'agents').length;
+const mcps = entries.filter((entry) => entry.collection === 'mcps').length;
+const countries = new Set(entries.map((entry) => entry.country)).size;
 ---
 <Layout title="LEGAL SKILLS | Directory">
-  <header class="text-center mb-12">
-    <h1 class="text-5xl font-extrabold text-emerald-900 mb-4">LEGAL SKILLS 🌿</h1>
-    <p class="text-xl text-emerald-800/70">The ultimate directory for legal AI intelligence.</p>
-  </header>
+  <section class="mb-9 grid gap-4 lg:grid-cols-12">
+    <div class="bento-panel relative overflow-hidden p-8 md:p-10 lg:col-span-7 lg:row-span-2">
+      <div class="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-emerald-300/35 blur-3xl"></div>
+      <div class="absolute -bottom-16 left-12 h-48 w-48 rounded-full bg-amber-300/30 blur-3xl"></div>
+      <div class="relative z-10 max-w-3xl">
+        <span class="inline-flex rounded-full bg-emerald-900/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-emerald-950/60">
+          Solarpunk legal intelligence registry
+        </span>
+        <h1 class="mt-6 text-5xl font-black tracking-[-0.06em] text-emerald-950 md:text-7xl">
+          LEGAL SKILLS 🌿
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-emerald-950/68 md:text-xl">
+          A searchable directory of legal AI skills, autonomous agents, and MCP servers — designed for jurisdiction-aware legal workflows.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#directory" class="btn-primary">Browse directory</a>
+          <a href="/resources" class="btn-secondary">Learn to build skills</a>
+        </div>
+      </div>
+    </div>
 
-  <SearchBar />
+    <div class="bento-panel p-6 lg:col-span-5">
+      <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Registry stats</p>
+      <div class="mt-5 grid grid-cols-2 gap-3">
+        <div class="rounded-[1.35rem] bg-white/55 p-4">
+          <div class="text-3xl font-black text-emerald-950">{skills}</div>
+          <div class="text-sm font-bold text-emerald-950/55">Skills</div>
+        </div>
+        <div class="rounded-[1.35rem] bg-white/55 p-4">
+          <div class="text-3xl font-black text-emerald-950">{agents}</div>
+          <div class="text-sm font-bold text-emerald-950/55">Agents</div>
+        </div>
+        <div class="rounded-[1.35rem] bg-white/55 p-4">
+          <div class="text-3xl font-black text-emerald-950">{mcps}</div>
+          <div class="text-sm font-bold text-emerald-950/55">MCPs</div>
+        </div>
+        <div class="rounded-[1.35rem] bg-white/55 p-4">
+          <div class="text-3xl font-black text-emerald-950">{countries}</div>
+          <div class="text-sm font-bold text-emerald-950/55">Countries</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {mockEntries.map((entry) => (
-      <Card 
-        title={entry.title}
-        description={entry.description}
-        type={entry.type}
-        country={entry.country}
-        language={entry.language}
-        link={entry.link}
-      />
-    ))}
-  </div>
+    <div class="bento-panel overflow-hidden p-6 lg:col-span-5">
+      <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Contribution model</p>
+      <h2 class="mt-3 text-2xl font-black text-emerald-950">PR-native, country-ready.</h2>
+      <p class="mt-3 text-sm leading-6 text-emerald-950/62">
+        Developers list new resources by opening a pull request in <strong>tuyo-ai/legal-skills</strong>. Each entry carries type, language, and country metadata.
+      </p>
+    </div>
+  </section>
+
+  <section id="directory" class="bento-panel p-4 md:p-6">
+    <div class="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-emerald-950/45">Directory</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-emerald-950">Search skills, agents, and MCPs</h2>
+      </div>
+      <p class="max-w-md text-sm leading-6 text-emerald-950/58">
+        Filter by title, jurisdiction, language, type, or capability. Every card links to a generated detail page.
+      </p>
+    </div>
+
+    <SearchBar />
+
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {entries.map((entry, index) => (
+        <Card entry={entry} featured={index === 0} />
+      ))}
+    </div>
+
+    <div id="empty-state" class="hidden rounded-[1.5rem] border border-dashed border-emerald-950/20 bg-white/45 p-8 text-center">
+      <h3 class="text-xl font-black text-emerald-950">No matching resources yet.</h3>
+      <p class="mt-2 text-emerald-950/60">Try another search or list a new SKILL.md via GitHub.</p>
+    </div>
+  </section>
 </Layout>
