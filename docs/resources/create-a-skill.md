@@ -1,0 +1,6 @@
+# Create a Skill
+## Step-by-step guide to building and sharing your own skills
+
+1. **Pick a Template** from our `templates/` folder.
+2. **Define your scope**...
+3. **Submit a PR**...

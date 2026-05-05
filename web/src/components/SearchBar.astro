@@ -1,0 +1,30 @@
+---
+---
+<div class="relative mb-12">
+  <input 
+    type="text" 
+    id="search-input" 
+    placeholder="Search skills, agents, or MCPs..." 
+    class="w-full p-4 rounded-xl border-2 border-emerald-200 focus:border-emerald-500 focus:outline-none bg-white/50 backdrop-blur-sm shadow-sm text-emerald-900"
+  />
+  <div class="absolute right-4 top-4 text-emerald-400">
+    🔍
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const cards = document.querySelectorAll('.solarpunk-card');
+
+  input?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase();
+    cards.forEach(card => {
+      const text = card.textContent?.toLowerCase() || '';
+      if (text.includes(query)) {
+        (card as HTMLElement).style.display = 'flex';
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+  });
+</script>

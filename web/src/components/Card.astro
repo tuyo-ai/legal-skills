@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  type: string;
+  country: string;
+  language: string;
+  link: string;
+}
+const { title, description, type, country, language, link } = Astro.props;
+---
+<a href={link} class="solarpunk-card p-6 flex flex-col gap-3">
+  <div class="flex justify-between items-start">
+    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-2 py-1 rounded">
+      {type}
+    </span>
+    <span class="text-xs text-emerald-800/50">
+      {country} | {language}
+    </span>
+  </div>
+  <h3 class="text-xl font-bold text-emerald-900">{title}</h3>
+  <p class="text-emerald-800/70 text-sm line-clamp-3">{description}</p>
+  <div class="mt-auto pt-4 text-sm font-bold text-gold-accent">
+    View Details →
+  </div>
+</a>

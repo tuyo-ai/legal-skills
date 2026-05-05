@@ -1,0 +1,23 @@
+---
+import Navbar from '../components/Navbar.astro';
+const { title } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Navbar />
+    <main class="flex-grow container mx-auto px-6 py-12">
+      <slot />
+    </main>
+    <footer class="p-8 text-center text-emerald-800/60 text-sm">
+      © 2023 LEGAL SKILLS - Built with 🌿 for the legal community.
+    </footer>
+  </body>
+</html>

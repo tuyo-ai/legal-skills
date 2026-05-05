@@ -1,0 +1,48 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-forest: #064e3b;
+  --color-emerald: #10b981;
+  --color-gold: #f59e0b;
+  --color-sand: #fef3c7;
+  --color-glass: rgba(255, 255, 255, 0.15);
+}
+
+body {
+  background-color: var(--color-sand);
+  color: var(--color-forest);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.solarpunk-card {
+  background: var(--color-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.solarpunk-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold);
+}
+
+.btn-primary {
+  background-color: var(--color-emerald);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-forest);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}

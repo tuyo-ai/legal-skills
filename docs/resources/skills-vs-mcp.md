@@ -1,0 +1,6 @@
+# Skills vs MCP
+## Understand the difference between skills and MCP servers
+
+While they often overlap, there is a key distinction:
+- **Skills** are high-level instructions or capabilities...
+- **MCP (Model Context Protocol)** is a standard for connecting models to data sources...

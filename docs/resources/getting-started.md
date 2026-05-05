@@ -1,0 +1,6 @@
+# Getting Started
+## Install your first skill in under 2 minutes
+
+To use a skill, you simply need to:
+1. Identify the skill...
+2. Add it to your agent's toolset...
